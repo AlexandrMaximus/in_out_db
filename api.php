@@ -17,6 +17,63 @@ function getAlldetails($db) {
 	return $result;
 }
 
+//Вывод всех материалов в таблицу//
+function getAllMaterials($db) {
+	$sql = "SELECT * FROM materials;
+
+	";
+	$result = array();
+
+	$stmt = $db->prepare($sql);
+
+	$stmt->execute();
+
+	while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+		$result[$row['material_id']] = $row;
+	}
+
+	return $result;
+}
+
+
+
+//Вывод всех заготовок  в таблицу//
+function getAllForms($db) {
+	$sql = "SELECT * FROM forms;
+
+	";
+	$result = array();
+
+	$stmt = $db->prepare($sql);
+
+	$stmt->execute();
+
+	while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+		$result[$row['form_id']] = $row;
+	}
+
+	return $result;
+}
+
+//Вывод всех размеров  в таблицу//
+function getAllSizes($db) {
+	$sql = "SELECT * FROM sizes;
+
+	";
+	$result = array();
+
+	$stmt = $db->prepare($sql);
+
+	$stmt->execute();
+
+	while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+		$result[$row['size_id']] = $row;
+	}
+
+	return $result;
+}
+/*
+
 /*
 
 //Вывод всех заказов//
