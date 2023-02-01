@@ -29,7 +29,7 @@ function getAllMaterials($db) {
 	$stmt->execute();
 
 	while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-		$result[$row['material_id']] = $row;
+		$result[$row['material']] = $row;
 	}
 
 	return $result;
@@ -49,7 +49,7 @@ function getAllForms($db) {
 	$stmt->execute();
 
 	while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-		$result[$row['form_id']] = $row;
+		$result[$row['form']] = $row;
 	}
 
 	return $result;
@@ -67,7 +67,7 @@ function getAllSizes($db) {
 	$stmt->execute();
 
 	while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-		$result[$row['size_id']] = $row;
+		$result[$row['size']] = $row;
 	}
 
 	return $result;
@@ -167,10 +167,10 @@ function saveDetail($db, $detail_name, $detail_id) {
 //--Добавление новых деталей в базу//
 
 
-
-function addNewDetail($db, $detail_name, $material, $form, $size, $height, $mass) {
-   $sql = " INSERT INTO details(detail_name, material, form, size, height, mass)
-            VALUES (:detail_name, :material, :form, :size, :height, :mass)
+/*
+function addNewDetail($db, $detail_name, $materialId, $formId, $sizeId, $height, $mass) {
+   $sql = " INSERT INTO details(detail_name, material_id, form_id, size_id, height, mass)
+            VALUES (:detail_name, :material_id, :form_id, :size_id, :height, :mass)
             
    ";
 
@@ -185,3 +185,4 @@ function addNewDetail($db, $detail_name, $material, $form, $size, $height, $mass
    $stmt->execute();
 }
 
+*/

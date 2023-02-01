@@ -54,7 +54,7 @@
        <!--Добавление деталей в базу-->
 <!----------------------------------------------------------------->
        <button id="addButton" class="btn btn-primary">Добавить деталь</button>
-                <form action="post_detail.php" method="POST" role="form" style="display: none; margin-bottom: 20px;">
+                <form action="" method="POST" role="form" style="display: none; margin-bottom: 20px;">
 <!----------------------------------------------------------------->
                   <div class="form-group">
                      <label for="">Введите наименование детали</label>
@@ -67,7 +67,7 @@
                     <?php
                       $materials = getAllMaterials($db);
                       foreach ($materials as $key => $value) {
-                        echo "<option value=".$value['material'].">".$value['material']."</option>";
+                        echo "<option value=".$value['material_id'].">".$value['material']."</option>";
                       }
                     ?>
                     </select>
@@ -78,7 +78,7 @@
                     <?php
                       $forms = getAllForms($db);
                       foreach ($forms as $key => $value) {
-                        echo "<option value=".$value['form'].">".$value['form']."</option>";
+                        echo "<option value=".$value['form_id'].">".$value['form']."</option>";
                       }
                     ?>
                     </select>
@@ -90,7 +90,7 @@
                     <?php
                       $forms = getAllSizes($db);
                       foreach ($forms as $key => $value) {
-                        echo "<option value=".$value['size'].">".$value['size']."</option>";
+                        echo "<option value=".$value['size_id'].">".$value['size']."</option>";
                       }
                     ?>
                     </select>
@@ -98,12 +98,12 @@
 <!----------------------------------------------------------------->
                   <div class="form-group">
                      <label for="">Введите длину заготовки</label>
-                     <input type="number" class="form-control" id="height" name="height" placeholder="Введите длину заготовки">
+                     <input type="text" class="form-control" id="height" name="height" placeholder="Введите длину заготовки">
                   </div>
 <!----------------------------------------------------------------->
                   <div class="form-group">
                      <label for="">Введите массу</label>
-                     <input type="number" class="form-control" id="mass" name="mass" placeholder="Введите массу">
+                     <input type="text" class="form-control" id="weight" name="weight" placeholder="Введите массу">
                   </div>
 <!----------------------------------------------------------------->
                   <button type="submit" class="btn btn-default">Добавить</button>
@@ -113,7 +113,19 @@
 <!----------------------------------------------------------------->
 
                 </form>
+                  <?php
+                    if(isset($_POST['detail_name']) && $_POST['detail_name'] !='')
+                    {
+                      $detail_name = $_POST['detail_name'];
+                      $materialId = $_POST['material'];
+                      $formId = $_POST['form'];
+                      $sizeId = $_POST['size'];
+                      $height = $_POST['height'];
+                      $mass = $_POST['mass'];
+                      addNewDetail($db, $detail_name, $materialId, $formId, $sizeId, $height, $mass);
+                    }
 
+                  ?>
       <footer>
 
       </footer>
