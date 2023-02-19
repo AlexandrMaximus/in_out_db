@@ -72,6 +72,24 @@ function getAllSizes($db) {
 
 	return $result;
 }
+
+//Вывод всех заказов в таблицу//
+function getAllorders($db) {
+	$sql = "SELECT * FROM orders;
+
+	";
+	$result = array();
+
+	$stmt = $db->prepare($sql);
+
+	$stmt->execute();
+
+	while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+		$result[$row['size']] = $row;
+	}
+
+	return $result;
+}
 /*
 
 /*
