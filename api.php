@@ -85,7 +85,7 @@ function getAllorders($db) {
 	$stmt->execute();
 
 	while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-		$result[$row['size']] = $row;
+		$result[$row['order_id']] = $row;
 	}
 
 	return $result;
