@@ -74,6 +74,7 @@ function getAllSizes($db) {
 }
 
 //Вывод всех заказов в таблицу//
+/*
 function getAllorders($db) {
 	$sql = "SELECT * FROM orders;
 
@@ -90,7 +91,24 @@ function getAllorders($db) {
 
 	return $result;
 }
-/*
+*/
+
+function getAllorders($db) {
+	$sql = "SELECT order_id, order_name, memo, client, prod_name, prod_quan, delivery_time, unit_labor, prod_quan * unit_labor as labor, unit_self_cost, prod_quan * unit_self_cost as self_cost FROM orders;
+
+	";
+	$result = array();
+
+	$stmt = $db->prepare($sql);
+
+	$stmt->execute();
+
+	while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+		$result[$row['order_id']] = $row;
+	}
+
+	return $result;
+}
 
 /*
 

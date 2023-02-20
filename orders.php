@@ -54,7 +54,7 @@
                <td><?php echo $order['unit_labor']; ?></td>
                <td><?php echo $order['labor']; ?></td>
                <td><?php echo $order['unit_self_cost']; ?></td>
-               <td><?php echo $order['self-cost']; ?></td>
+               <td><?php echo $order['self_cost']; ?></td>
             </tr>
          <?php } ?>
       </table>
