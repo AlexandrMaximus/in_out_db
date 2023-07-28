@@ -45,16 +45,16 @@
          <?php foreach ($orders as $order) { ?>
 
             <tr>
-               <td><a href=""><?php echo $order['order_name']; ?></a></td>
+               <td><?php echo $order['order_name']; ?></td>
                <td><?php echo $order['memo']; ?></td>
                <td><?php echo $order['client']; ?></td>
-               <td><a href="edit.php"><?php echo $order['prod_name']; ?></a></td>
+               <td><?php echo $order['prod_name']; ?></td>
                <td><?php echo $order['prod_quan']; ?></td>
                <td><?php echo $order['delivery_time']; ?></td>
                <td><?php echo $order['unit_labor']; ?></td>
-               <td><?php echo $order['labor']; ?></td>
+              <!-- <td><?php echo $order['labor']; ?></td>-->
                <td><?php echo $order['unit_self_cost']; ?></td>
-               <td><?php echo $order['self_cost']; ?></td>
+              <!-- <td><?php echo $order['self_cost']; ?></td>-->
             </tr>
          <?php } ?>
       </table>
@@ -102,18 +102,8 @@
                   </div>
 <!----------------------------------------------------------------->
                   <div class="form-group">
-                     <label for="">Введите трудозатраты на заказ</label>
-                     <input type="number" class="form-control" id="labor" name="labor" placeholder="Введите трудозатраты на заказ">
-                  </div>
-<!----------------------------------------------------------------->
-                  <div class="form-group">
                      <label for="">Введите себестоимость ед.продукции</label>
                      <input type="number" class="form-control" id="unit_self_cost" name="unit_self_cost" placeholder="Введите себестоимость ед.продукции">
-                  </div>
-<!----------------------------------------------------------------->
-                  <div class="form-group">
-                     <label for="">Введите себестоимость заказа</label>
-                     <input type="number" class="form-control" id="self_cost" name="self_cost" placeholder="Введите себестоимость заказа">
                   </div>
 <!----------------------------------------------------------------->
                   <button type="submit" class="btn btn-default">Добавить</button>
