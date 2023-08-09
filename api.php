@@ -173,17 +173,19 @@ function getDetailsByProduct($db, $product) {
 
 
 
+*/
 //Вывод детали на странице редактирования//
-function getDetailById($db, $detail_id) {
-   $sql = "SELECT * FROM details 
-            WHERE detail_id = :detail_id";
+function getOrderById($db, $order_id) {
+   $sql = "SELECT * FROM orders
+            WHERE order_id = :order_id";
    $stmt = $db->prepare($sql);
-   $stmt->bindValue('detail_id', $detail_id, PDO::PARAM_INT);
+   $stmt->bindValue('order_id', $order_id, PDO::PARAM_INT);
    $stmt->execute();
    $row = $stmt->fetch(PDO::FETCH_ASSOC);
    return $row;
 }
 
+/*
 //Сохранение измененнной детали в базу//
 function saveDetail($db, $detail_name, $detail_id) {
    $sql = " UPDATE details

@@ -48,7 +48,7 @@
                <td><a href=""><?php echo $order['order_name']; ?></a></td>
                <td><?php echo $order['memo']; ?></td>
                <td><?php echo $order['client']; ?></td>
-               <td><a href="edit.php"><?php echo $order['prod_name']; ?></a></td>
+               <td><a href="edit_order.php?order_id=<?php echo $order['order_id']; ?>"><?php echo $order['prod_name']; ?></a></td>
                <td><?php echo $order['prod_quan']; ?></td>
                <td><?php echo $order['delivery_time']; ?></td>
                <td><?php echo $order['unit_labor']; ?></td>
