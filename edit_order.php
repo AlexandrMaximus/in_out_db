@@ -41,7 +41,7 @@ catch (PDOException $e) {
           <div class="container-fluid">
             <?php
 
-             if($_SERVER["REQUEST_METHOD"] === "GET" && isset($_GET["order_id"]))
+            if($_SERVER["REQUEST_METHOD"] === "GET" && isset($_GET["order_id"]))
               {
                 $order_id = $_GET["order_id"];
                 $sql = "SELECT * FROM orders WHERE order_id = :order_id";
@@ -73,15 +73,50 @@ catch (PDOException $e) {
                              <input type='text' name='client' value='$client' /></p>
                              <p>продукция:
                              <input type='text' name='prod_name' value='$prod_name' /></p>
+                             <p>количество продукции:
+                             <input type='number' name='prod_quan' value='$prod_quan' /></p>
+                             <p>дата поставки:
+                             <input type='date' name='delivery_time' value='$delivery_time' /></p>
+                             <p>трудозатраты на единицу:
+                             <input type='number' name='unit_labor' value='$unit_labor' /></p>
+                             <p>трудозатраты общие:
+                             <input type='number' name='labor' value='$labor' /></p>
+                             <p>себестоимость за единицу:
+                             <input type='number' name='unit_self_cost' value='$unit_self_cost' /></p>
+                             <p>себестоимость общая:
+                             <input type='number' name='self_cost' value='$self_cost' /></p>
                              <input type='submit' value='Сохранить' />
                          </form>";
-    }
-    else{
-        echo "Пользователь не найден";
-    }
-}
+               }
+             else{
+                 echo "Заказ не найден";
+                  }
+               }
+
+            elseif (isset($_POST["order_id"]) && isset($_POST["order_name"]) && isset($_POST["memo"]) && isset($_POST["client"]) && isset($_POST["prod_name"]) && isset($_POST["prod_quan"]) && isset($_POST["delivery_time"]) && isset($_POST["unit_labor"]) && isset($_POST["labor"]) && isset($_POST["unit_self_cost"]) && isset($_POST["self_cost"]))
+            {
+
+                $sql = "UPDATE orders SET order_name = :order_name, memo = :memo, client = :client, prod_name = :prod_name, prod_quan = :prod_quan, delivery_time = :delivery_time, unit_labor = :unit_labor, labor = :labor, unit_self_cost = :unit_self_cost, self_cost = :self_cost WHERE order_id = :order_id";
+                $stmt = $conn->prepare($sql);
+                $stmt->bindValue(":order_id", $_POST["order_id"]);
+                $stmt->bindValue(":order_name", $_POST["order_name"]);
+                $stmt->bindValue(":memo", $_POST["memo"]);
+                $stmt->bindValue(":client", $_POST["client"]);
+                $stmt->bindValue(":prod_name", $_POST["prod_name"]);
+                $stmt->bindValue(":prod_quan", $_POST["prod_quan"]);
+                $stmt->bindValue(":delivery_time", $_POST["delivery_time"]);
+                $stmt->bindValue(":unit_labor", $_POST["unit_labor"]);
+                $stmt->bindValue(":labor", $_POST["labor"]);
+                $stmt->bindValue(":unit_self_cost", $_POST["unit_self_cost"]);
+                $stmt->bindValue(":self_cost", $_POST["self_cost"]);
 
 
+                $stmt->execute();
+                header("Location: orders.php");
+            }
+            else{
+                echo "Некорректные данные";
+                  }
 
             ?>
 
