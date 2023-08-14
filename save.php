@@ -1,35 +1,35 @@
-<!DOCTYPE html>
-<html>
-<!----------------------------------------------------------------->
-   <?php include 'head.php';?>
-<!----------------------------------------------------------------->
-   <body>
-      <style>
-      html, body {
-      height: 50%;
-      padding-top: 52px;
-      }
-      </style>
-<!----------------------------------------------------------------->
-      <?php include 'header.php';?>
-<!----------------------------------------------------------------->
-<!----------------------------------------------------------------->
-<!--ПОЛУЧЕНИЕ ДАННЫХ ПО ID-->
-<!----------------------------------------------------------------->
-      <div id="content">
-          <div class="container-fluid">
-            <?php include 'db.php'; ?>
-            <?php include 'api.php'; ?>
-            <?php
-               $order_id = $_GET['order_id'];
-               $order = getOrderById($db, $order_id);
-            ?>
+<?php
+error_reporting(E_ALL);
+ini_set('display_errors', 100);
+
+try{
+    $user = "root";
+    $password = "";
 
 
-      <footer>
+    $db = new PDO("mysql:host=localhost;dbname=in_out_db2", $user, $password);
 
-      </footer>
 
-   </body>
-</html>
+
+    $order_name = $_POST['order_name'];
+    $order_id = $_POST['order_id'];
+
+    $sql = "UPDATE orders
+    SET order_name = :order_name
+    WHERE order_id = :order_id;
+               ";
+    $stmt = $db->prepare($sql);
+
+
+    $stmt->execute(['order_name' => $_POST['order_name'], 'order_id' => $_POST['order_id'],]);
+
+}
+
+
+catch (PDOException $e)
+{
+  echo $e->getMessage();
+}
+
+?>
 

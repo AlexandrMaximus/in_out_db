@@ -1,4 +1,7 @@
 <?php
+
+error_reporting(E_ALL);
+ini_set('display_errors', 100);
 //Вывод всех деталей в таблицу//
 function getAlldetails($db) {
 	$sql = "SELECT * FROM details;
@@ -72,9 +75,9 @@ function getAllSizes($db) {
 
 	return $result;
 }
-
-//Вывод всех заказов в таблицу//
 /*
+//Вывод всех заказов в таблицу//
+
 function getAllorders($db) {
 	$sql = "SELECT * FROM orders;
 
@@ -174,7 +177,7 @@ function getDetailsByProduct($db, $product) {
 
 
 */
-//Вывод детали на странице редактирования//
+//Вывод заказа на странице редактирования//
 function getOrderById($db, $order_id) {
    $sql = "SELECT * FROM orders
             WHERE order_id = :order_id";
@@ -185,6 +188,25 @@ function getOrderById($db, $order_id) {
    return $row;
 }
 
+/*
+//Сохранение измененнного номера заказа в базу//
+try{
+	function saveOrderName($db, $order_name, $order_id) {
+	   $sql = "UPDATE orders
+	   			SET order_name = :order_name
+	   			WHERE order_id = :order_id;
+	   			";
+	   $stmt = $db->prepare($sql);
+	   $stmt->bindValue(':order_name', $order_name);
+	   $stmt->bindValue(':order_id', $order_id);
+	   $stmt->execute();
+		}
+	}
+catch (PDOException $e)
+     {
+      echo $e->getMessage();
+     }
+*/
 /*
 //Сохранение измененнной детали в базу//
 function saveDetail($db, $detail_name, $detail_id) {
